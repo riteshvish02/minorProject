@@ -1,0 +1,281 @@
+<%- include('./partials/header'); %>
+<%- include('./partials/menu',{formattedDateTime}); %>
+
+<div class="parent w-full h-fit  bg-[#FAE8DC] flex  items-center justify-center">
+    <% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
+        <div class="alert absolute bottom-[45%] right-[10%] min-w-[20vh] max-w-[40vh] min-h-[8vh] rounded-md bg-[#B3DBAE] px-3 items-center gap-2 py-3 cursor-pointer flex">
+            <img class="w-[4vh] h-[4vh] object-cover object-center" src="/images/icons/icons8-success-48.png" alt="">
+            <h6><%= success_msg %></h6>
+        </div>
+    <% } %>
+   
+    <% if (typeof error_msg !== 'undefined' && error_msg.length > 0) { %>
+        <div class="alert absolute bottom-[45%] right-[10%] min-w-[20vh] max-w-[40vh] min-h-[8vh] rounded-md  px-3 items-center gap-2 py-3 cursor-pointer flex">
+            <img class="w-[4vh] h-[4vh] object-cover object-center" src="/images/icons/icons8-close-window-48.png" alt="">
+            <h6><%=error_msg%></h6>
+        </div>
+    <% } %>
+    <div class="child max-md:w-full md:w-[80%] h-fit  bg-white shadow-md	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
+     <div class="hero w-full  h-fit ">
+       <div class="flex flex-col  px-2 md:flex-row">
+         <div class="left-content md:w-[75%] flex flex-col items-center max-md:w-full  max-md:px-2  max-lg:px-[3vh] pl-[3vh] pt-[5vh] h-full ">
+          
+            <div class="head xl:w-[55vw] max-lg:p-3 xl:h-[11vh] lg:p-3 bg-[#025A6C] rounded-md flex items-center justify-center">
+              <h2 class="text-white uppercase xl:text-[5vh] xl:text-[2.5vh] font-bold md:text-[2.5vw] lg:text-[4vw] text-center">Manuscript submission</h2>
+          </div>
+            <form class="w-[95%] p-3 xl:mt-5 rounded-md bg-[#F8F8FB]  py-[3vh]" method="post" enctype="multipart/form-data" action="/manuscriptcreate">
+                 <% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
+                  <h3 class="alert  my-5 text-center text-green-500">
+                    <span class="text-[2vw] max-md:text-[2.5vh] font-semibold ">submitted successfully </span>
+                    <br> your manuscript id no. has been sent to your email address.Now we will verify your article and soon this article will be published on WJAPS. If you have any query please do not hesitate to contact us on wjapsjournal@gmail.com
+                  </h3>
+            <% } %>
+                <div class="col1 w-full flex flex-wrap items-center  justify-between">
+                   
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">title*:</h2>
+                        <select class="outline-none pl-5 mt-1 border-[1.5px] border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md py-[9px] w-[25vw] max-lg:w-[100%] px-2 cursor-pointer" name="nametype"  id="nametype">
+                            <option value="" disabled selected>select title</option>
+                            <option class="py-[5px] cursor-pointer" value="Dr." <%= formData.nametype === 'Dr.' ? 'selected' : '' %>>Dr.</option>
+                            <option class="py-[5px] cursor-pointer" value="Mrs." <%= formData.nametype === 'Mrs.' ? 'selected' : '' %>>Mrs.</option>
+                            <option class="py-[5px] cursor-pointer" value="Mr." <%= formData.nametype === 'Mr.' ? 'selected' : '' %>>Mr.</option> 
+                            <option class="py-[5px] cursor-pointer" value="Prof." <%= formData.nametype === 'Prof.' ? 'selected' : '' %>>Prof.</option>
+                            <option class="py-[5px] cursor-pointer" value="Ms." <%= formData.nametype === 'Ms.' ? 'selected' : '' %>>Ms.</option>
+                            <option class="py-[5px] cursor-pointer" value="Miss." <%= formData.nametype === 'Miss.' ? 'selected' : '' %>>Miss.</option>
+                        </select>
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Please select a valid title"){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize"> name*:</h2>
+                        <input  placeholder="Name" class="w-full outline-none focus-none  py-[8px] w-[25vw] max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer" type="text" name="firstname" value="<%=formData.firstname || ''%>"  id="firstname">
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Name is required"){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div class="col1 w-full flex items-center w-full justify-between">
+                    <div class="flex flex-col max-lg:w-full w-full">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">Article title*:</h2>
+                        <textarea   placeholder="Article Title" class="w-full outline-none focus-none  py-[8px] w-full flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer" name="title" id="title"><%=formData.title || ''%></textarea>
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Article title is required" ){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col1 w-full flex items-center flex-wrap  justify-between">
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">email*:</h2>
+                        <input  placeholder="Email" class="w-full outline-none focus-none  py-[8px] w-[25vw] max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer" type="email" name="email" value="<%=formData.email || ''%>"  id="email">
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Please enter a valid email address"){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">country*:</h2>
+                        <select class="outline-none pl-5 mt-1 border-[1.5px] border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md py-[9px] w-[25vw] max-lg:w-[100%] px-2 cursor-pointer" name="country" id="country">
+                            <option value="" disabled selected>select country</option>
+                            <%countryNames.forEach((country)=>{%>
+                                <option class="py-[5px] cursor-pointer" value="<%=country%>"><%=country%></option>
+                            <%})%>
+                        </select>
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Please select a valid country"){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    
+                </div>
+               
+                
+                 <div class="flex items-center flex-wrap w-full justify-between">
+                    <div class="flex flex-col max-lg:w-full w-[25vw] ">
+                        <div class="col1  flex items-center w-[100%]  justify-between">
+                            <div class="flex items-center gap-4 w-full bg-white mt-3 p-5 border-[1.2px] ">
+                                <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">gender*:</h2>
+                                <div class="gender flex flex-wrap gap-5 items-center">
+                                    <div class="male flex items-center max-sm:w-full  lg:w-fit justify-center">
+                                    <span class="text-zinc-600 text-[2.9vw] md:text-[1.3vw] xl:text-[2.2vh]">male</span>
+                                    <input  placeholder="last Name" class="w-full ml-5 outline-none focus-none  py-[8px] max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer"  type="radio" name="gender" value="male"  id="male" <%= formData.gender === 'male' ? 'checked' : '' %>>
+                                    </div>
+                                    <div class="female flex items-center lg:w-fit  max-sm:w-full justify-between">
+                                    <span class="text-zinc-600 text-[2.9vw] md:text-[1.3vw] xl:text-[2.2vh]">female</span>
+                                    <input  placeholder="last Name" class="w-full ml-2 outline-none focus-none  py-[8px] max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer"  type="radio" name="gender" value="female"  id="female" <%= formData.gender === 'female' ? 'checked' : '' %>>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        
+                    </div>
+                    <ul class="h-[5vh]">
+                        <%errors && errors.forEach(function(error) { %>
+                          <%if(error.msg == "Please select a gender"){%>
+                            <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                          <%}%>
+                        <% }) %>
+                    </ul>
+                    </div>
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">mobile number:</h2>
+                        <input  placeholder="Mobile Number" class="w-full outline-none focus-none  py-[8px] w-[25vw] max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer" type="number" name="number" value="<%=formData.number || ''%>"  id="number">
+                        <ul class="h-[5vh]">
+                            <% let mobileErrorShown = false; %>
+                            <% errors && errors.forEach(function(error) { %>
+                                <% if(error.msg === "Please enter a valid mobile number" && !mobileErrorShown) { %>
+                                    <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                                    <% mobileErrorShown = true; %>
+                                <% } %>
+                            <% }) %>
+                        </ul>
+                    </div>
+                 </div>
+                 <div class="col1 w-full flex items-center flex-wrap justify-between ">
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">article type*:</h2>
+                        <select class="outline-none pl-5 mt-1 border-[1.5px] border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md py-[9px] w-[25vw] max-lg:w-[100%] px-2 cursor-pointer" name="type" id="type">
+                            <option value="" disabled selected>select Article Type</option>
+                            <option class="py-[5px] cursor-pointer" value="Research Article" <%= formData.type === 'Research Article' ? 'selected' : '' %>>Research Article</option>
+                            <option class="py-[5px] cursor-pointer" value="Review Article" <%= formData.type === 'Review Article' ? 'selected' : '' %>>Review Article</option>
+                            <option class="py-[5px] cursor-pointer" value="Case Study" <%= formData.type === 'Case Study' ? 'selected' : '' %>>Case Study</option>
+                            <option class="py-[5px] cursor-pointer" value="Short Communication" <%= formData.type === 'Short Communication' ? 'selected' : '' %>>Short Communication</option>
+                        </select>
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Please select a valid article type"){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">File Upload (Accept only PDF/DOC)*:</h2>
+                        <input  class="w-full bg-white outline-none focus-none  py-[6px] w-[25vw] max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer" type="file" name="pdf" required  id="pdf">
+                        <ul class="h-[5vh]">
+                          <%errors && errors.forEach(function(error) { %>
+                            <%if(error.msg == "Invalid PDF file type." || error.msg == "File too large" ){%>
+                              <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                            <%}%>
+                          <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                
+                 <div class="col1 w-full flex items-center  justify-between">
+                    <div class="flex flex-col max-lg:w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">Designation:</h2>
+                        <input  placeholder="Designation" class="w-full outline-none focus-none  py-[8px] w-[25vw] max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer" type="text" name="designation" value="<%=formData.designation || '' %>"  id="designation">
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Designation is required"){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col1 w-full flex items-center w-full   justify-between">
+                    <div class="flex flex-col max-lg:w-full w-full ">
+                        <h2 class="xl:text-[2.3vh] md:text-[1.3vw] text-[2.9vw] capitalize">Address:</h2>
+                        <textarea   placeholder="Address" class="w-full outline-none focus-none  py-[8px]  max-lg:w-[100%] flex items-center border-[1.5px] mt-1  border-zinc-700 xl:text-[2.5vh] md:text-[1.3vw] text-[2.9vw] rounded-md px-2 pl-5 cursor-pointer"  name="address" id="address"><%=formData.address || ''%></textarea>
+                        <ul class="h-[5vh]">
+                            <%errors && errors.forEach(function(error) { %>
+                              <%if(error.msg == "Address is required"){%>
+                                <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                              <%}%>
+                            <% }) %>
+                        </ul>
+                       
+                    </div>
+                </div>
+                <button class="xl:px-[11vh] max-lg:px-2 px-2 py-[8px] bg-zinc-600 rounded-md xl:text-[2.5vh] text-[2vw] md:text-[1.3vw] font-medium text-white mt-8">Submit Article</button>
+            </form>
+        </div>
+      <%- include('./partials/sidebar',{news});%>
+       </div>
+    <div class="flex flex-wrap p-3"> 
+  
+  
+      <div class="w-full transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#058ECB]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">Call for papers</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">24x7 working</h3>
+
+            <a href="/manuscript-submission" class="bg-[#058ECB] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      
+      <div class="w-full  transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#82B26C]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">Notification of acceptance</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">Within 24 hours</h3>
+
+            <a href="/manuscript-submission" class="bg-[#82B26C] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      <div class="w-full  transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#058ECB]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">E-certificates</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">Within 04 hours</h3>
+
+            <a href="/manuscript-submission" class="bg-[#058ECB] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      
+     
+        
+    </div>
+    <div class="relative max-md:hidden w-[95%] m-auto md:h-[10vw] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+      <%- include('./partials/scroller',{indexings}); %>
+    </div>
+       <div class="relative md:hidden w-[85%] m-auto md:h-[20vh] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+        <%- include('./partials/resscroller',{indexings}); %>
+      </div>
+     </div>
+    
+       <%- include('./partials/footerfrontend',{visit}); %>
+    </div>
+   </div>
+
+<script>
+    setTimeout(()=>{
+        document.querySelectorAll('.alert').forEach((elem)=>{
+          elem.classList.add('hidden');
+        })
+    },8000);
+</script>
+<%- include('./partials/footer'); %>

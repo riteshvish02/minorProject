@@ -1,0 +1,36 @@
+<%- include('./partials/header'); %>
+<%- include('./partials/menu',{formattedDateTime}); %>
+<div class="parent w-full h-fit  bg-[#FAE8DC] flex  items-center justify-center">
+    <div class="child max-md:w-full md:w-[80%] h-fit  bg-white shadow-md	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
+     <div class="hero w-full  h-fit ">
+       <div class="flex flex-col px-2 md:flex-row">
+         <div class="left-content md:w-[75%]  flex flex-col items-center max-md:w-full md:w-full max-md:px-2 max-lg:px-[3vh] pl-[3vh] pt-[5vh] h-full ">
+          <div class="head xl:w-[55vw] max-lg:p-3 xl:h-[11vh] mx-auto p-3 lg:p-3 bg-[#025A6C] rounded-md flex items-center justify-center">
+            <h2 class="text-white uppercase xl:text-[5vh] max-lg:text-[2.5vh] text-center font-bold lg:text-[5vh]">abstract</h2>
+        </div>
+            <%if(article){%>
+              <h2 class="xl:text-[4.5vh] md:text-[2.5vw] font-medium max-lg:text-[3vh] text-center mt-2"><%=article.issue.issueName%></h2>
+                <div class="article xl:mt-5 w-[95%]">
+                    <h2 class="font-bold  sm:text-[3vw] md:text-[2vw] xl:text-[3vh] uppercase text-[#025A6C]"><%=article.title%></h2>
+                    <h3 class="text-zinc-600 sm:text-[2.8vw] md:text-[1.3vw] xl:text-[2.5vh] font-medium max-lg:mt-2 xl:mt-5"><%-article.author%></h3>
+                    <p class="sm:text-[2.5vw] xl:text-[2.4vh] md:text-[1.3vw] text-gray-800 max-lg:mt-2 xl:mt-5"><%=article.abstract%></p>
+                    <a class="text-blue-500 sm:text-[2.8vw] md:text-[1.3vw] xl:text-[2.5vh] capitalize mt-3 " href="/images/pdfs/<%=article.pdf.url%>">[get full article]</a>
+                </div>
+            <%}%>
+        </div>
+      <%- include('./partials/sidebar',{news});%>
+       </div>
+       <div class="relative max-md:hidden w-[95%] m-auto md:h-[10vw] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+         <%- include('./partials/scroller',{indexings}); %>
+      </div>
+      <div class="relative md:hidden w-[85%] m-auto md:h-[20vh] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+       <%- include('./partials/resscroller',{indexings}); %>
+     </div>
+   
+     </div>
+    
+       <%- include('./partials/footerfrontend',{visit}); %>
+    </div>
+   </div>
+<%- include('./partials/footer'); %>
+

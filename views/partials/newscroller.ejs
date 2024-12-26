@@ -1,0 +1,25 @@
+<div  id="mover2">
+    <div class="container2 p-1">
+      <%if(news){%>
+        <%news.forEach((neww)=>{%>
+          <div class="elems  px-1 mt-4">
+              <h2 class="text-[#025A] xl:text-[2.3vh] text-[2vw] md:text-[1.3vw] font-medium"><%=neww.title%></h2>
+              <h3 class="mt-1 xl:text-[2vh] text-[2vw] md:text-[1.3vw]"> <%-neww.description%></h3>
+          </div>
+        <%})%>
+      <%}%>
+     
+    </div>
+    <div class="container2 p-1">
+      <%if(news){%>
+        <%news.forEach((neww)=>{%>
+          <div class="elems  px-1 mt-4">
+              <h2 class="text-[#025A6C] xl:text-[2.3vh] text-[2vw] md:text-[1.3vw] font-medium"><%=neww.title%></h2>
+              <h3 class="mt-1 xl:text-[2vh] text-[2vw] md:text-[1.3vw]"> <%-neww.description%></h3>
+          </div>
+        <%})%>
+      <%}%>
+         
+       
+      </div>
+</div>

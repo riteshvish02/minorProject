@@ -1,0 +1,58 @@
+<%- include('../partials/header'); %>
+<div class="login flex items-center w-full h-[100vh] justify-center bg-[#F8F8FB]">
+ 
+   
+  <form action="/admin/login" method="post" autocomplete="off" class="lg:w-[30%] max-md:w-[95%] md:w-[95%] px-2 flex flex-col items-center gap-4 rounded-[5px] shadow-md	box-shadow: 0 5px 7px -2px rgb(0 0 0 / 0.1), 0 3px 5px -3px rgb(0 0 0 / 0.1); min-h-[85%] overflow-x-hidden ">
+    <div class="logo w-full h-[22%]  bg-[#C2E6FF] flex items-center justify-between">
+        <div class="elem text-[#3452E1] pl-7">
+            <h2 class="text-[2.5vh] font-medium">Welcome Back!</h2>
+            <h4>sign in to continue....</h4>
+        </div>
+        <img class="object-center object-cover max-md:h-[7vh] max-md:w-[7vh] w-[20vh] h-[20vh]" src="/images/login/loginpng-removebg-preview.png" alt="">
+    </div>
+    <div class="inp w-[85%] flex flex-col gap-2">
+        <label class="block  text-[2.2vh]" for="">Email</label>
+        <input placeholder="Email" class="w-[100%] outline-none pl-3 rounded-[2px]  h-[5.5vh] border-[#999] border-[1.2px]" type="email" autocomplete="off" name="email">
+        <% if (errors.length > 0) { %>
+            <ul>
+              <% errors.forEach(function(error) { %>
+                <%if(error.val == "email"){%>
+                    <li class="alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                <%}%>
+              <% }) %>
+            </ul>
+          <% } %>  
+    </div>
+    <div class="inp w-[85%] flex flex-col gap-2">
+        <label class="block  text-[2.2vh]" for="">Key</label>
+        <input placeholder="Key" class="w-[100%] outline-none pl-3 rounded-[2px]  h-[5.5vh] border-[#999] border-[1.2px]" type="text" autocomplete="off" name="key">
+        <% if (errors.length > 0) { %>
+            <ul>
+              <% errors.forEach(function(error) { %>
+                <%if(error.val == "key"){%>
+                    <li class="alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                <%}%>
+              <% }) %>
+            </ul>
+          <% } %>  
+    </div>
+    <div class="inp w-[85%] flex flex-col gap-2">
+        <label class="block  text-[2.2vh]" for="">Password</label>
+        <input placeholder="Password" class="w-[100%] outline-none pl-3 rounded-[2px]  h-[5.5vh] border-[#999] border-[1.2px]" type="password" autocomplete="off" name="password">
+        <% if (errors.length > 0) { %>
+            <ul>
+              <% errors.forEach(function(error) { %>
+                <%if(error.val == "pass"){%>
+                    <li class="alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                <%}%>
+              <% }) %>
+            </ul>
+          <% } %>  
+    </div>
+    <button class="w-[85%] h-[5.5vh] bg-[#C2E6FF] text-[#0060fa] mt-[5vh] font-medium rounded-[3px]">Log in</button>
+   <%if(error_msg.length > 0){%>
+        <h2 class="text-red-600">*<%=error_msg%>*</h2>
+   <%}%>
+  </form>
+</div>
+<%- include('../partials/footer'); %>

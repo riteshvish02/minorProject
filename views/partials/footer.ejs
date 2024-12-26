@@ -1,0 +1,97 @@
+<!-- Correct order: jQuery first, then Textillate.js -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">
+        </script>
+        <script src="/javascripts/jquery.fittext.js"></script>
+        <script src="/javascripts/jquery.lettering.js"></script>
+        <script src="/javascripts/jquery.textillate.js"></script>
+
+<script>
+    if (!document.querySelector('script[src="https://cdn.tailwindcss.com"]')) {
+        console.error("Tailwind CSS failed to load.");
+    }
+    $(document).ready(function () {
+    $('.myClass').textillate({
+        // Selector of the text to animate
+        selector: '.myTexts',
+
+        // Enable looping
+        loop: true,
+
+        // Minimum display time for each text before it is replaced
+        minDisplayTime: 2000,
+
+        // Initial delay before starting the animation
+        initialDelay: 0,
+
+        // Automatically start animating
+        autoStart: true,
+
+        // In animation settings
+        in: {
+            effect: 'bounceIn', // Set the "in" effect
+            delayScale: 1.5,    // Delay multiplier for each character
+            delay: 50,          // Delay between each character
+            sync: false,        // Animate characters individually
+            shuffle: false,     // Do not randomize character sequence
+            reverse: false      // Do not reverse character sequence
+        },
+
+        // Out animation settings
+        out: {
+            effect: 'bounceOut', // Set the "out" effect
+            delayScale: 0.7,     // Delay multiplier for each character
+            delay: 4,           // Delay between each character
+            sync: false,         // Animate characters individually
+            shuffle: false,      // Do not randomize character sequence
+            reverse: false       // Do not reverse character sequence
+        },
+
+        // Animate each character
+        type: 'char'
+    });
+});
+
+    function updateClock() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+            };
+            const formattedTime = new Intl.DateTimeFormat('en-US', options).format(now);
+            document.getElementById('clock').innerText = formattedTime;
+        }
+
+        // Initial call to set the time
+        updateClock();
+
+        // Update the time every second
+        setInterval(updateClock, 1000);
+    let usermenu = document.querySelector(".usermenu")
+    document.querySelector(".menuopen").addEventListener("click",()=>{
+        gsap.to(usermenu,{
+            left:"0",
+            duration:0.5,
+            ease:"power3.inOut"
+        })
+    })
+    document.querySelector(".menuclose").addEventListener("click",()=>{
+        gsap.to(usermenu,{
+            left:"-100%",
+            duration:0.5,
+            ease:"power3.inOut"
+        })
+    })
+</script>
+</body>
+</html>

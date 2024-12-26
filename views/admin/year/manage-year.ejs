@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>WJAPS</title>
+    <link rel="icon" href="/images/researchlogo.png" type="image/png">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="parent w-full h-[100vh] bg-red-300 relative">
+        <div class="popup-warn xl:w-[40vh] hidden h-[20vh] ml-2  md:left-[20%] xl:left-[50%] top-[15%] xl:transform-x-[-50%]  bg-gray-200 shadow-md rounded-md cursor-pointer absolute">
+            <p class="text-red-600 text-center pt-2 px-2">do you really want to delete this item?</p>
+            <div class="div flex items-center justify-center w-full pt-10 gap-3">
+                <h2 class="bg-blue-400 yes text-white xl:px-3 xl:py-[4px] rounded max-lg:p-2  lg:p-2 xl:text-[2.7vh] capitalize">
+                    yes
+                </h2>
+                <h2 class="bg-red-400 no text-white xl:px-3 xl:py-[4px] rounded max-lg:p-2  lg:p-2 xl:text-[2.7vh] capitalize">
+                    no
+                </h2>
+            </div>
+        </div>
+        <% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
+            <div class="alert absolute bottom-[10%] right-[10%] min-w-[20vh] max-w-[40vh] min-h-[8vh] rounded-md bg-[#B3DBAE] px-3 items-center gap-2 py-3 cursor-pointer flex">
+                <img class="w-[4vh] h-[4vh] object-cover object-center" src="/images/icons/icons8-success-48.png" alt="">
+                <h6><%= success_msg %></h6>
+            </div>
+        <% } %>
+
+        <% if (typeof error_msg !== 'undefined' && error_msg.length > 0) { %>
+            <div class="alert absolute bottom-[10%] right-[10%] min-w-[20vh] max-w-[40vh] min-h-[8vh] rounded-md bg-red-200 px-3 items-center gap-2 py-3 cursor-pointer flex">
+                <img class="w-[4vh] h-[4vh] object-cover object-center" src="/images/icons/icons8-close-window-48.png" alt="">
+                <h6><%=error_msg%></h6>
+            </div>
+        <% } %>
+      <div class="navv h-[12vh] bg-[#FFFFFF] relative shadow-md border-b-[1.1px] px-[3.7vh] w-full flex items-center justify-between">
+      <div class="left flex items-center px-3 max-lg:flex-col lg:gap-[8vh]">
+        <img class="xl:w-[13vh] h-[5vh] w-[5vh] xl:h-[13vh] object-center object-cover" src="/images/login/loginpng-removebg-preview.png" alt="">
+        <i class="ri-menu-line text-[2.8vh] menu-icon"></i>
+      </div>
+      <div class="right flex items-center gap-[2vh]">
+        <img class="w-[7vh] h-[7vh] object-center object-cover" src="/images/researchlogo.png" alt="">
+        <h1 class="text-zinc-900 profilenav">Admin <i class="ri-arrow-down-s-fill"></i></h1>
+      </div>
+      <div class="absolute w-[28vh] profilemenu hidden h-[15vh] bg-gray-100 flex flex-col items-start pl-5 right-[2%] shadow-md justify-center top-[100%]">
+        <a class="text-black-600 font-medium capitalize" href="/admin/update-page/<%=adminId%>">
+          <span><i class="ri-user-fill"></i></span>
+          <span class="ml-3 lg:text-[2.2vh] max-lg:text-[2vh]">profile</span>
+        </a>
+        <a class="text-black-600 font-medium capitalize" href="/admin/update-passwordpage/<%=adminId%>">
+          <span><i class="ri-refresh-fill"></i></span>
+          <span class="ml-3 lg:text-[2.2vh] max-lg:text-[2vh]">update password</span>
+        </a>
+        <a class="text-red-600 font-medium capitalize" href="/admin/logout">
+          <span><i class="ri-logout-box-line"></i></span>
+          <span class="ml-3 lg:text-[2.2vh] max-lg:text-[2vh]">logout</span>
+        </a>
+      </div>
+    </div>
+        
+    <div class="hero flex w-full h-[88vh] bg-gray-900 ">
+            
+        <div class="leftmenu dashboardleftmenu bg-gray-900 max-md:w-full max-lg:left-[-100%] xl:left-0 lg:left-[-100%] overflow-y-scroll form-scroll md:w-[70%]  lg:w-[30%] xl:w-[20%] max-lg:absolute lg:absolute xl:static h-[88vh] flex flex-col items-start pl-8 pt-[3vh]">
+          <h1 class="text-white font-medium flex gap-3  text-[2.3vh]"><i class="ri-dashboard-line"></i> Dashboard</h1>
+          <a href="/admin/manage-year" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage year</span></a>
+          <a href="/admin/manage-issues" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage issues</span></a>
+          <a href="/admin/manage-articles" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage article</span></a>
+          <a href="/admin/manage-indexing" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage index</span></a>
+          <a href="/admin/manage-news" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage news</span></a>
+          <a href="/admin/manage-contactus" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage contact us</span></a>
+          <a href="/admin/manage-editorial" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage editorial</span></a>
+          <a href="/admin/manage-subscript" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage manuscript</span></a>
+        </div>
+        <div class="right h-[88vh] max-lg:w-full lg:w-full  xl:w-[80%] bg-[#F8F8FB] px-4 pt-4 overflow-y-scroll  form-scroll">
+         
+            <div class="top-section flex justify-between w-full mb-4">
+                <h2 class="uppercase text-zinc-900 text-[2.5vh] font-bold">Year</h2>
+                <h3 class="text-zinc-600">Dashboard / <span class="text-zinc-500">Year</span></h3>
+            </div>
+            <form class="w-full bg-white py-3 rounded-md h-[15vh] flex max-md:flex-col items-center px-[3vh] md:gap-[3vh]" action="/admin/createyear" method="post">
+                <div class="flex flex-col h-full justify-center md:w-[55vh] ">
+                    <label class="text-zinc-800 capitalize" class="" for="image">Year:</label>
+                    <input placeholder="Enter year" class="w-full py-[6px] flex items-center border-[1.5px] mt-1  border-zinc-400 rounded-md px-2 pl-5 cursor-pointer" type="number" name="year" id="year">
+                    <ul class="w-fit h-[3vh]">
+                        <%errors && errors.forEach(function(error) { %>
+                          <%if(error.msg == "Year is required"){%>
+                            <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                          <%}%>
+                        <% }) %>
+                      </ul>
+                </div>
+                <div class="flex flex-col h-full justify-center md:w-[35vh] pt-1">
+                    <button class="capitalize bg-[#556EE6] px-3 py-[6px] rounded-md text-white">Add new Year</button>
+                </div>
+            </form>
+            <div class="list bg-white w-full mt-7 rounded-md p-3 ">
+               <div class="head-search flex w-full items-center justify-between">
+               
+                <div class="search flex flex-col pr-[15vh]">
+                    <label class="text-zinc-800 text-[2.4vh] capitalize font-medium" for="">search:</label>
+                    <input id="searchInput" class="md:w-[27vh] border-[1.8px] border-gray-400 px-2 py-[4px] rounded-md" type="text" placeholder="Search..." oninput="handleSearch()">
+                </div>
+               </div>
+               <div  class="data-editorials border-[1.2px] mt-3   border-zinc-400 ">
+                    <div class="row1  w-full flex capitalize h-[5vh]">
+                        <div class="col1 flex items-center pl-2 w-[20%] border-r-[1.2px] border-zinc-400">
+                            <h2>#</h2>
+                        </div>
+                        <div class="col1 w-[30%] border-r-[1.2px] border-zinc-400 flex items-center pl-2">
+                            <h2>Name</h2>
+                        </div>
+                        <div class="col1 w-[50%] border-r-[1.2px] border-zinc-400 flex items-center pl-2">
+                            <h2>Action</h2>
+                        </div>
+                    </div>
+                    <div id="content">
+                    </div>
+               </div>
+               <div id="pagination" class="pagination mt-4 flex justify-center gap-2">
+               
+              </div>
+           
+            </div>
+          </div>
+      </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script>
+           const menu = document.querySelector(".leftmenu")
+          let toggle = 0;
+       document.querySelector(".menu-icon").addEventListener("click", function(e) {
+        if(toggle == 0){
+            gsap.to(menu,{
+                left:"0",
+                duration: 0.5,
+                ease: "power3.inOut"
+            })
+            toggle = 1;
+        }else{
+            gsap.to(menu,{
+                left:"-100%",
+                duration: 0.5,
+                ease: "power3.inOut"
+            })
+            toggle = 0;
+        }
+       })
+       let toggler = 0;
+      let prof = document.querySelector(".profilenav")
+       prof.addEventListener("click",()=>{
+        if(toggler == 0){
+          document.querySelector(".profilemenu").classList.remove("hidden")
+          toggler = 1;
+        }else{
+          document.querySelector(".profilemenu").classList.add("hidden")
+          toggler = 0;
+        }
+       })
+        setTimeout(function() {
+        const alert = document.querySelector('.alert');
+        if (alert) {
+        alert.style.display = 'none';
+        }
+        }, 3000);
+
+        let currentPage = 1;        // Current page
+        let totalPages = 0;         // Total number of pages
+        const itemsPerPageView = 2; // Number of page numbers to show in pagination
+        let searchTerm = '';        // Current search term
+        
+        // Load editorials with pagination and search term
+        function loadPage(page = 1) {
+            const url = `/admin/get-year?page=${page}&search=${searchTerm}`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    
+                    const { Years, totalPages: total, currentPage: current } = data;
+                    totalPages = total;
+                    currentPage = current;
+        
+                    // Update the editorial content
+                    const contentDiv = document.getElementById('content');
+                    contentDiv.innerHTML = '';  // Clear the existing content
+                    
+                    // Render editorials (or data)
+                     Years.forEach((neww, index) => {
+                        const Template = `
+                          <div class="row1 border-t-[1.2px] border-gray-500 bg-[#F7F9FC] w-full flex capitalize min-h-[5vh]">
+                                <div class="col1 flex items-center pl-2 w-[20%] border-r-[1.2px] border-zinc-400">
+                                    <h2>${index+1}</h2>
+                                </div>
+                                 <div style="white-space: wrap; overflow-x: scroll;" class="col1 border-r-[1.2px] border-zinc-400 w-[30%] editorialname flex items-center p-2  justify-center">
+                                    <h2>
+                                        ${neww.year}
+                                    </h2>
+                                </div>
+                                <div class="col1 w-[50%] border-r-[1.2px] border-zinc-400 py-3 flex justify-center gap-2 items-center pl-2">
+                                      <h2 id="delete" data-val="${neww._id}" class="text-[3.5vh] md:py-[6px] md:px-4 rounded-sm bg-red-400 cursor-pointer">
+                                            <i  class="ri-delete-bin-6-line"></i>
+                                       </h2>
+                                        <a class="text-[3.5vh] md:py-[6px] md:px-4 rounded-sm bg-blue-400" href="/admin/edit-year/${neww._id}">
+                                            <i class="ri-edit-2-fill"></i>
+                                        </a>
+                                </div>
+                            </div>
+                        `
+                        contentDiv.innerHTML += Template; // Append each editorial row
+                        deletepopup()
+                    });
+                    const and = updatePagination();
+                    console.log(and);
+                    
+                });
+        }
+        
+        // Handle Search
+        function handleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchTerm = searchInput.value; // Update the search term
+            loadPage(1); // Reload from the first page when searching
+        }
+        
+        // Update Pagination
+        function updatePagination() {
+            const paginationDiv = document.getElementById('pagination');
+            paginationDiv.innerHTML = '';  // Clear the pagination
+        
+            const startPage = Math.max(1, currentPage - Math.floor(itemsPerPageView / 2));
+            const endPage = Math.min(totalPages, startPage + itemsPerPageView - 1);
+        
+            // Add previous button
+            if (currentPage > 1) {
+                const prevButton = document.createElement('button');
+                prevButton.textContent = 'Previous';
+                prevButton.onclick = () => loadPage(currentPage - 1);
+                paginationDiv.appendChild(prevButton);
+            }
+        
+            // Add page buttons
+            for (let page = startPage; page <= endPage; page++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = page;
+                if (currentPage === page) {
+                    pageButton.classList.add('active'); // Only add the class if the page matches
+                }
+                pageButton.onclick = () => loadPage(page);
+                paginationDiv.appendChild(pageButton);
+            }
+        
+            // Add next button
+            if (currentPage < totalPages) {
+                const nextButton = document.createElement('button');
+                nextButton.textContent = 'Next';
+                nextButton.onclick = () => loadPage(currentPage + 1);
+                paginationDiv.appendChild(nextButton);
+            }
+        }
+        
+        // Initially load the first page
+        loadPage();
+        
+        
+        
+        
+        function deletepopup(){
+            document.querySelectorAll("#delete").forEach(function(elem){
+            const yes = document.querySelector(".popup-warn .yes")
+            const no = document.querySelector(".popup-warn .no")
+            let index = 1;
+              elem.addEventListener("click", function(){
+                if(index == 1){
+                    document.querySelector(".popup-warn").classList.remove("hidden");
+                    index = 0;
+                    console.log(elem.dataset.val);
+                    yes.addEventListener("click",()=>{
+                        fetch(`/admin/year-delete/${elem.dataset.val}`,{
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then((response)=>{
+                            const res =  response.json();
+                            res.then((response)=>{
+                                if (response.success) {  // You can check for success or other conditions in the response
+                                window.location.href = "/admin/manage-year"; // Redirect to a success page
+                                } else {
+                                // Handle error or failure case here
+                                console.log("Deletion failed:", response.message);
+                               }
+                            })
+                        })
+                    })
+                    no.addEventListener("click",()=>{
+                        document.querySelector(".popup-warn").classList.add("hidden");
+                        index = 1;
+                    })
+                }else{
+                    document.querySelector(".popup-warn").classList.add("hidden");
+                    index = 1;
+                }
+            })
+            })
+            }
+            deletepopup();
+        
+          </script> 
+</body>
+</html>

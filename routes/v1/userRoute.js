@@ -1,0 +1,25 @@
+const express = require("express");
+const router = express.Router();
+const {userController} =  require("../../controller")
+const {FormValidation} = require("../../middleware")
+
+router.get('/',userController.home)
+router.get('/about/about-us',userController.aboutus)
+router.get('/about/publication-ethics',userController.aboutPublication)
+router.get('/about/review-procedure',userController.aboutReview)
+router.get('/about/join-reviewer',userController.joinReviewer)
+router.get('/about/author-instructions',userController.aboutInstruction)
+router.get('/editorial-board',userController.editorialBoard)
+router.get('/indexing-page',userController.indexingPage)
+router.get('/contact-page',userController.contactPage)
+router.get('/archive-page',userController.archivePage)
+router.get('/download',userController.downloadPage)
+router.get('/currentissue-page',userController.currentissuePage)
+router.get('/pastissue-page/:id',userController.archiveShowPage)
+router.get('/manuscript-submission',userController.manuscriptPage)
+router.get('/publication-fee',userController.publicationFeePage)
+router.post('/track-article',userController.trackarticlePage)
+router.get('/get-article/:id',userController.getArticle)
+router.post('/get-view/:id',userController.getView)
+router.post('/manuscriptcreate',FormValidation.validateManuscriptForm,userController.manuscriptCreate)
+module.exports = router;

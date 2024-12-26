@@ -1,0 +1,278 @@
+<%- include('./partials/header'); %>
+<%- include('./partials/menu',{formattedDateTime}); %>
+<div class="parent w-full h-fit  bg-[#FAE8DC] flex  items-center justify-center">
+    <div class="child max-md:w-full md:w-[80%] h-fit  bg-white shadow-md	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
+     <div class="hero w-full  h-fit ">
+       <div class="flex flex-col px-2 md:flex-row">
+         <div class="left-content md:w-[75%] flex flex-col items-center max-md:w-full  max-md:px-2  max-lg:px-[3vh] pl-[3vh] pt-[5vh] h-full ">
+            <div class="head xl:w-[55vw] max-lg:p-3 xl:h-[11vh] mx-auto p-3 lg:p-3 bg-[#025A6C] rounded-md flex items-center justify-center">
+                <h2 class="text-white uppercase xl:text-[5vh] max-lg:text-[2.5vh] text-center font-bold lg:text-[5vh]">current issue</h2>
+            </div>
+            <%if(issues){%>
+        
+                <div class="issues w-full   h-fit mt-7">
+                    <h2 class="xl:text-[4.5vh] md:text-[2.5vw] font-medium max-lg:text-[3vh] text-center mt-2"><%=issues.issueName%></h2>
+
+                    <%let res =false %>
+                    <%let rev =false %>
+                    <%let cas =false %>
+                    <%let boo =false %>
+                    <%let sho =false %>
+                    
+                    <%issues && issues.articles.forEach(function(article) {%>
+                        <div class="artcles mt-3">
+                            <%if(article.category == "Research Article"){%>
+                                <%if(!res){%>
+                                    <h2 class="text-[3.5vw] md:text-[2vw]  font-semibold text-[#fff] bg-[#025A6C] py-2 my-2 px-2"><%=article.category%></h2>
+                                    <% res = true%>
+                                <%}%>
+                               
+                                <div id="articles-<%=article._id%>" class="article mt-2 flex border-y-[2px] md:flex max-md:flex-col-reverse  border-dotted border-[#025A6C] py-[2.5vh] px-[2vh]">
+                                    <div class="left w-[85%] max-lg:w-full max-lg:mt-4">
+                                        <div class="min-h-[7vw]  ">
+                                            <h3 class="font-bold xl:text-[2.9vh]  text-[2.9vw] md:text-[1.3vw]"><%=article.title%></h3>
+                                        <h4 class="xl:text-[2.9vh] xl:mt-4 lg:mt-3 mt-2   text-[2.9vw] md:text-[1.3vw] font-medium text-gray-600"><%-article.author%></h4>
+                                        </div>
+                                        <div class="links  pt-5 flex flex-wrap   w-fit gap-3">
+                                            <a onclick="updateViewCount('<%=article._id%>')" class="px-5 max-lg:py-[4px] max-lg:text-[2.2vh] abs py-[7px] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/get-article/<%=article._id%>">
+                                                abstract
+                                            </a>
+                                            <a class="px-4 lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/images/pdfs/<%=article.pdf.url%>">
+                                                download
+                                            </a>
+                                            <h2 id="view-count-<%=article._id%>"  class="px-4 flex gap-2 items-center lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                                <span class="flex items-baseline gap-1">view :</span>
+                                                <%=article.view%>
+                                            </h2>
+                                            <h2 class="lg:px-4 max-lg:px-3 lg:py-[7px] max-lg:py-[4px] max-lg:text-[1.5vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white  rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                               <%=article.doi%>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="right ml-2 w-[15%] max-lg:w-full max-lg:justify-center max-lg:flex">
+                                        <img class="xl:w-[15vh] md:w-[10vw] md:h-[10vw] w-[20vw] h-[20vw] xl:h-[20vh] object-center object-cover" src="/images/uploads/<%=article.image.url%>" alt="">
+                                    </div>
+                                </div>
+                            <%}%>
+                        </div>
+                        <div class="artcles mt-3 ">
+                            <%if(article.category == "Review Article"){%>
+                                <%if(!rev){%>
+                                    <h2 class="xl:text-[2.8vh] md:text-[1.5vw] lg:text-[2vw] font-semibold text-[#fff] bg-[#025A6C] py-2 my-2 px-2"><%=article.category%></h2>
+                                    <% rev = true%>
+                                <%}%>
+                                
+                          <div id="articles-<%=article._id%>" class="article mt-2 flex border-y-[2px] md:flex max-md:flex-col-reverse  border-dotted border-[#025A6C] py-[2.5vh] px-[2vh]">
+                                    <div class="left w-[85%] max-lg:w-full max-lg:mt-4">
+                                        <div class="min-h-[7vw]  ">
+                                            <h3 class="font-bold xl:text-[2.9vh]  text-[2.9vw] md:text-[1.3vw]"><%=article.title%></h3>
+                                        <h4 class="xl:text-[2.9vh] xl:mt-4 lg:mt-3 mt-2  text-[2.9vw] md:text-[1.3vw] font-medium text-gray-600"><%-article.author%></h4>
+                                        </div>
+                                        <div class="links  pt-5 flex flex-wrap   w-fit gap-3">
+                                            <a onclick="updateViewCount('<%=article._id%>')" class="px-5 max-lg:py-[4px] max-lg:text-[2.2vh] abs py-[7px] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/get-article/<%=article._id%>">
+                                                abstract
+                                            </a>
+                                            <a class="px-4 lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/images/pdfs/<%=article.pdf.url%>">
+                                                download
+                                            </a>
+                                            <h2 id="view-count-<%=article._id%>"  class="px-4 flex gap-2 items-center lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                                <span class="flex items-baseline gap-1">view :</span>
+                                                <%=article.view%>
+                                            </h2>
+                                            <h2 class="lg:px-4 max-lg:px-3 lg:py-[7px] max-lg:py-[4px] max-lg:text-[1.5vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white  rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                               <%=article.doi%>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="right ml-2 w-[15%] max-lg:w-full max-lg:justify-center max-lg:flex">
+                                        <img class="xl:w-[15vh] md:w-[10vw] md:h-[10vw] w-[20vw] h-[20vw] xl:h-[20vh] object-center object-cover" src="/images/uploads/<%=article.image.url%>" alt="">
+                                    </div>
+                                </div>
+                            <%}%>
+                        </div>
+                        <div class="artcles mt-3">
+                            <%if(article.category == "Short Communication"){%>
+                                <%if(!sho){%>
+                                    <h2 class="xl:text-[2.8vh] md:text-[1.5vw] lg:text-[2vw] font-semibold text-[#fff] bg-[#025A6C] py-2 my-2 px-2"><%=article.category%></h2>
+                                    <% sho = true%>
+                                <%}%>
+                                  <div id="articles-<%=article._id%>" class="article mt-2 flex border-y-[2px] md:flex max-md:flex-col-reverse  border-dotted border-[#025A6C] py-[2.5vh] px-[2vh]">
+                                    <div class="left w-[85%] max-lg:w-full max-lg:mt-4">
+                                        <div class="min-h-[7vw]  ">
+                                            <h3 class="font-bold xl:text-[2.9vh]  text-[2.9vw] md:text-[1.3vw]"><%=article.title%></h3>
+                                        <h4 class="xl:text-[2.9vh] xl:mt-4 lg:mt-3 mt-2  text-[2.9vw] md:text-[1.3vw] font-medium text-gray-600"><%-article.author%></h4>
+                                        </div>
+                                        <div class="links  pt-5 flex flex-wrap   w-fit gap-3">
+                                            <a onclick="updateViewCount('<%=article._id%>')" class="px-5 max-lg:py-[4px] max-lg:text-[2.2vh] abs py-[7px] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/get-article/<%=article._id%>">
+                                                abstract
+                                            </a>
+                                            <a class="px-4 lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/images/pdfs/<%=article.pdf.url%>">
+                                                download
+                                            </a>
+                                            <h2 id="view-count-<%=article._id%>"  class="px-4 flex gap-2 items-center lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                                <span class="flex items-baseline gap-1">view :</span>
+                                                <%=article.view%>
+                                            </h2>
+                                            <h2 class="lg:px-4 max-lg:px-3 lg:py-[7px] max-lg:py-[4px] max-lg:text-[1.5vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white  rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                               <%=article.doi%>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="right ml-2 w-[15%] max-lg:w-full max-lg:justify-center max-lg:flex">
+                                        <img class="xl:w-[15vh] md:w-[10vw] md:h-[10vw] w-[20vw] h-[20vw] xl:h-[20vh] object-center object-cover" src="/images/uploads/<%=article.image.url%>" alt="">
+                                    </div>
+                                </div>
+                            <%}%>
+                        </div>
+                        <div class="artcles mt-3">
+                            <%if(article.category == "Case Study"){%>
+                                <%if(!cas){%>
+                                    <h2 class="xl:text-[2.8vh] md:text-[1.5vw] lg:text-[2vw] font-semibold text-[#fff] bg-[#025A6C] py-2 my-2 px-2"><%=article.category%></h2>
+                                    <% cas = true%>
+                                <%}%>
+                                  <div id="articles-<%=article._id%>" class="article mt-2 flex border-y-[2px] md:flex max-md:flex-col-reverse  border-dotted border-[#025A6C] py-[2.5vh] px-[2vh]">
+                                    <div class="left w-[85%] max-lg:w-full max-lg:mt-4">
+                                        <div class="min-h-[7vw]  ">
+                                            <h3 class="font-bold xl:text-[2.9vh]  text-[2.9vw] md:text-[1.3vw]"><%=article.title%></h3>
+                                        <h4 class="xl:text-[2.9vh] xl:mt-4 lg:mt-3 mt-2  text-[2.9vw] md:text-[1.3vw] font-medium text-gray-600"><%-article.author%></h4>
+                                        </div>
+                                        <div class="links  pt-5 flex flex-wrap   w-fit gap-3">
+                                            <a onclick="updateViewCount('<%=article._id%>')" class="px-5 max-lg:py-[4px] max-lg:text-[2.2vh] abs py-[7px] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/get-article/<%=article._id%>">
+                                                abstract
+                                            </a>
+                                            <a class="px-4 lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/images/pdfs/<%=article.pdf.url%>">
+                                                download
+                                            </a>
+                                            <h2 id="view-count-<%=article._id%>"  class="px-4 flex gap-2 items-center lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                                <span class="flex items-baseline gap-1">view :</span>
+                                                <%=article.view%>
+                                            </h2>
+                                            <h2 class="lg:px-4 max-lg:px-3 lg:py-[7px] max-lg:py-[4px] max-lg:text-[1.5vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white  rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                               <%=article.doi%>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="right ml-2 w-[15%] max-lg:w-full max-lg:justify-center max-lg:flex">
+                                        <img class="xl:w-[15vh] md:w-[10vw] md:h-[10vw] w-[20vw] h-[20vw] xl:h-[20vh] object-center object-cover" src="/images/uploads/<%=article.image.url%>" alt="">
+                                    </div>
+                                </div>
+                            <%}%>
+                        </div>
+                        <div class="artcles mt-3">
+                            <%if(article.category == "Book"){%>
+                                <%if(!boo){%>
+                                    <h2 class="xl:text-[2.8vh] md:text-[1.5vw] lg:text-[2vw] font-semibold text-[#fff] bg-[#025A6C] py-2 my-2 px-2"><%=article.category%></h2>
+                                    <% boo = true%>
+                                <%}%>
+                                  <div id="articles-<%=article._id%>" class="article mt-2 flex border-y-[2px] md:flex max-md:flex-col-reverse  border-dotted border-[#025A6C] py-[2.5vh] px-[2vh]">
+                                    <div class="left w-[85%] max-lg:w-full max-lg:mt-4">
+                                        <div class="min-h-[7vw]  ">
+                                            <h3 class="font-bold xl:text-[2.9vh]  text-[2.9vw] md:text-[1.3vw]"><%=article.title%></h3>
+                                        <h4 class="xl:text-[2.9vh] xl:mt-4 lg:mt-3 mt-2  text-[2.9vw] md:text-[1.3vw] font-medium text-gray-600"><%-article.author%></h4>
+                                        </div>
+                                        <div class="links  pt-5 flex flex-wrap   w-fit gap-3">
+                                            <a onclick="updateViewCount('<%=article._id%>')" class="px-5 max-lg:py-[4px] max-lg:text-[2.2vh] abs py-[7px] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/get-article/<%=article._id%>">
+                                                abstract
+                                            </a>
+                                            <a class="px-4 lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease" href="/images/pdfs/<%=article.pdf.url%>">
+                                                download
+                                            </a>
+                                            <h2 id="view-count-<%=article._id%>"  class="px-4 flex gap-2 items-center lg:py-[7px] max-lg:py-[4px] max-lg:text-[2.2vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                              
+                                                <span class="flex items-baseline gap-1">view :</span>
+                                                <%=article.view%>
+                                            </h2>
+                                            <h2 class="lg:px-4 max-lg:px-3 lg:py-[7px] max-lg:py-[4px] max-lg:text-[1.5vh] xl:text-[2.5vh]  text-[2.9vw] md:text-[1.3vw] capitalize text-white  rounded-md bg-[#9CA3AF] hover:bg-gray-500 hover:scale-[1.03] transition-transform duration-0.2 ease">
+                                               <%=article.doi%>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="right ml-2 w-[15%] max-lg:w-full max-lg:justify-center max-lg:flex">
+                                        <img class="xl:w-[15vh] md:w-[10vw] md:h-[10vw] w-[20vw] h-[20vw] xl:h-[20vh] object-center object-cover" src="/images/uploads/<%=article.image.url%>" alt="">
+                                    </div>
+                                </div>
+                            <%}%>
+                        </div>
+                        <%})%>
+                    </div>
+            <%}else{%>
+                <h2 class="text-[5vh] capitalize font-medium">No current issue</h2>
+            <%}%>
+                
+        </div>
+      <%- include('./partials/sidebar',{news});%>
+       </div>
+       <div class="flex flex-wrap p-3"> 
+  
+  
+      <div class="w-full transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#058ECB]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">Call for papers</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">24x7 working</h3>
+
+            <a href="/manuscript-submission" class="bg-[#058ECB] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      
+      <div class="w-full  transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#82B26C]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">Notification of acceptance</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">Within 24 hours</h3>
+
+            <a href="/manuscript-submission" class="bg-[#82B26C] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      <div class="w-full  transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#058ECB]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">E-certificates</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">Within 04 hours</h3>
+
+            <a href="/manuscript-submission" class="bg-[#058ECB] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      
+     
+        
+    </div>
+    <div class="relative max-md:hidden w-[95%] m-auto md:h-[10vw] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+      <%- include('./partials/scroller',{indexings}); %>
+    </div>
+       <div class="relative md:hidden w-[85%] m-auto md:h-[20vh] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+        <%- include('./partials/resscroller',{indexings}); %>
+      </div>
+   
+     </div>
+    
+       <%- include('./partials/footerfrontend',{visit}); %>
+    </div>
+</div>
+<%- include('./partials/footer'); %>
+
+<script>
+    function updateViewCount(articleId) {
+    fetch(`/get-view/${articleId}`, {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Update the view count displayed on the page
+        if (data.success) {
+            const viewCountElement = document.getElementById(`view-count-${articleId}`);
+            viewCountElement.innerText = data.updatedViewCount;
+        }
+    })
+    .catch(error => console.error('Error updating view count:', error));
+}
+</script>

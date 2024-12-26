@@ -1,0 +1,33 @@
+<div class="sidebar max-md:w-full    md:w-[25%]  p-[2vh]  pt-[12%] flex flex-col items-center justify-start h-[100%] ">
+    <div class="coverpage w-[95%] md:h-[22vw] h-[70vw] ">
+            <div class="top md:h-[3vw] h-[10vw] w-full pl-2 flex items-center  bg-[#025A6C]">
+                <a class="capitalize text-[2.9vw] md:text-[1.3vw]  text-white font-medium" href="">cover page</a>
+            </div>
+            <div class="btm w-[100%]  border-[#025A6C] border-[2px] h-[83%] p-1 ">
+            <img class="w-full h-full object-center obeject-cover" src="/images/coverpage.png" alt="">
+            </div>
+    </div>
+    <div class=" w-[95%] md:min-h-[12vw] min-h-[30vw] mb-3 ">
+        <div class="top md:h-[3vw] h-[10vw] w-full pl-2 flex items-center  bg-[#025A6C]">
+            <h2 class="capitalize  text-[3vw] md:text-[1.3vw]  text-white font-medium" >track article</h2>
+        </div>
+        <div class="btm w-[100%]  border-[#025A6C] border-[2px] flex items-center justify-center  px-3 md:h-[12vw] h-full">
+            <form action="/track-article" class="w-full  h-full py-2 pr-2 flex flex-col items-center gap-2" method="post">
+                <input placeholder="Ex:- WJAPS-1002024" class="py-2 h-[20%] xl:text-[2vh] px-2 w-full  text-[2.9vw] md:text-[1.3vw]  mx-auto block rounded outline-none focus-none border-[1.2px] border-zinc-400" type="text" name="number">
+                <button class="px-4   text-white text-[4vw] md:text-[1.3vw] xl:text-[2.4vh] h-[20%]  bg-[#025A6C] rounded-md mt-2 block mx-auto">submit</button>
+            </form>
+        <!-- <img class="w-full h-full object-center obeject-cover" src="https://wjims.com/images/wjims_cover.jpg" alt=""> -->
+        </div>
+    </div>
+    <a  href="/indexing-page" class="index w-[95%] mt-3 md:h-[3vw] h-[10vw] bg-[#025A6C] flex items-center pl-[2vh]">
+        <h2 class="capitalize  text-[2.9vw] md:text-[1.3vw]  text-white font-medium">indexing</h2>
+    </a>
+    <div class="coverpage w-[95%] md:h-[26vw] h-[70vw]   mt-2">
+        <div class="top md:h-[3vw] h-[10vw] w-full pl-2 flex items-center  bg-[#025A6C]">
+            <a class="capitalize  text-[2.9vw] md:text-[1.3vw]  text-white font-medium" href="">last update</a>
+        </div>
+        <div class="btm w-[100%]   border-[#025A6C] border-[2px] h-[83%] ">
+            <%- include('./newscroller',{news}); %>
+        </div>
+    </div>
+</div>

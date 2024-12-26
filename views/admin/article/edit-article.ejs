@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>WJAPS</title>
+    <link rel="icon" href="/images/researchlogo.png" type="image/png">
+  <link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+  rel="stylesheet"/>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" />
+</head>
+<body>
+  <div class="parent w-full h-[100vh] bg-red-300">
+    <div class="navv h-[12vh] bg-[#FFFFFF] relative shadow-md border-b-[1.1px] px-[3.7vh] w-full flex items-center justify-between">
+      <div class="left flex items-center px-3 max-lg:flex-col lg:gap-[8vh]">
+        <img class="xl:w-[13vh] h-[5vh] w-[5vh] xl:h-[13vh] object-center object-cover" src="/images/login/loginpng-removebg-preview.png" alt="">
+        <i class="ri-menu-line text-[2.8vh] menu-icon"></i>
+      </div>
+      <div class="right flex items-center gap-[2vh]">
+        <img class="w-[7vh] h-[7vh] object-center object-cover" src="/images/researchlogo.png" alt="">
+        <h1 class="text-zinc-900 profilenav">Admin <i class="ri-arrow-down-s-fill"></i></h1>
+      </div>
+     <div class="absolute w-[28vh] profilemenu hidden h-[15vh] bg-gray-100 flex flex-col items-start pl-5 right-[2%] shadow-md justify-center top-[100%]">
+        <a class="text-black-600 font-medium capitalize" href="/admin/update-page/<%=adminId%>">
+          <span><i class="ri-user-fill"></i></span>
+          <span class="ml-3 lg:text-[2.2vh] max-lg:text-[2vh]">profile</span>
+        </a>
+        <a class="text-black-600 font-medium capitalize" href="/admin/update-passwordpage/<%=adminId%>">
+          <span><i class="ri-refresh-fill"></i></span>
+          <span class="ml-3 lg:text-[2.2vh] max-lg:text-[2vh]">update password</span>
+        </a>
+        <a class="text-red-600 font-medium capitalize" href="/admin/logout">
+          <span><i class="ri-logout-box-line"></i></span>
+          <span class="ml-3 lg:text-[2.2vh] max-lg:text-[2vh]">logout</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero flex w-full h-[88vh] bg-gray-900 ">
+      <div class="leftmenu dashboardleftmenu bg-gray-900 z-[999] max-md:w-full max-lg:left-[-100%] xl:left-0 lg:left-[-100%] overflow-y-scroll form-scroll md:w-[70%]  lg:w-[30%] xl:w-[20%] max-lg:absolute lg:absolute xl:static h-[88vh] flex flex-col items-start pl-8 pt-[3vh]">
+        <h1 class="text-white font-medium flex gap-3  text-[2.3vh]"><i class="ri-dashboard-line"></i> Dashboard</h1>
+        <a href="/admin/manage-year" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage year</span></a>
+        <a href="/admin/manage-issues" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage issues</span></a>
+        <a href="/admin/manage-articles" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage article</span></a>
+        <a href="/admin/manage-indexing" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage index</span></a>
+        <a href="/admin/manage-news" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage news</span></a>
+        <a href="/admin/manage-contactus" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage contact us</span></a>
+        <a href="/admin/manage-editorial" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage editorial</span></a>
+        <a href="/admin/manage-subscript" class="text-[#a6b0cf] hover:text-white w-[90%] hover:bg-gray-600 rounded-md py-3 flex items-center justify-start gap-3 mt-2 bg-zinc-800 px-2 capitalize cursor-pointer"><i class="ri-list-check text-[2.1vh] bg-gray-600 p-1 px-2  rounded-md"></i> <span>manage manuscript</span></a>
+      </div>
+      <div class="right h-[88vh] max-lg:w-full lg:w-full  xl:w-[80%] bg-[#F8F8FB] px-4 pt-4 overflow-y-scroll  form-scroll">
+        <div class="top-section flex justify-between w-full mb-4">
+            <h2 class="uppercase text-zinc-900 text-[2.5vh] font-bold">article</h2>
+            <h3 class="text-zinc-600">Dashboard / <span class="text-zinc-500">article</span></h3>
+        </div>
+        <div class="list bg-white w-full mt-7 mb-5 rounded-md p-5">
+       
+          <div class="form">
+            <form action="/admin/edit-article/<%=article._id%>" method="POST" enctype="multipart/form-data">
+              <div class="top-part flex w-full justify-between max-lg:flex-col flex-wrap">
+                     <div class="flex flex-col ">
+                         <label class="text-zinc-800 capitalize"  for="type">select year:</label>
+                         <select class="outline-none selectyear pl-5 mt-1 border-[1.5px] border-zinc-400 rounded-md py-[6px]  xl:w-[47vh] px-2 cursor-pointer"  name="year" id="year">
+                           <option class="py-[5px] cursor-pointer" value="<%=article.year.year%>"><%=article.year.year%></option>
+                           <%years.forEach(function(year){%>
+                             <option class="py-[5px] cursor-pointer" value="<%=year.year%>"><%=year.year%></option>
+                           <%})%>
+                         </select>
+                         <ul>
+                           <%errors && errors.forEach(function(error) { %>
+                             <%if(error.msg == "Please select a valid year"){%>
+                               <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                             <%}%>
+                           <% }) %>
+                         </ul>
+                     </div>
+                     <div class="flex flex-col ">
+                       <label class="text-zinc-800 capitalize"  for="type">select category:</label>
+                       <select class="outline-none pl-5 mt-1 border-[1.5px] border-zinc-400 rounded-md py-[6px]  xl:w-[47vh] px-2 cursor-pointer"  name="category" id="category">
+                         <option value="" disabled selected>select category</option>
+                         <option class="py-[5px] cursor-pointer" value="Research Article" <%= article.category === 'Research Article' ? 'selected' : '' %>>Research Article</option>
+                         <option class="py-[5px] cursor-pointer" value="Review Article" <%= article.category === 'Review Article' ? 'selected' : '' %> >Review Article</option>
+                         <option class="py-[5px] cursor-pointer" value="Short Communication" <%= article.category === 'Short communication' ? 'selected' : '' %> >Short Communication</option>
+                         <option class="py-[5px] cursor-pointer" value="Case Study" <%= article.category === 'Case Study' ? 'selected' : '' %>>Case Study</option>
+                         <option class="py-[5px] cursor-pointer" value="Book" <%= article.category === 'Book' ? 'selected' : '' %>>Book</option>
+                       </select>
+                       <ul>
+                         <%errors && errors.forEach(function(error) { %>
+                           <%if(error.msg == "Please select a valid category"){%>
+                             <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                           <%}%>
+                         <% }) %>
+                       </ul>
+                   </div>
+                   <div class="flex flex-col ">
+                     <label class="text-zinc-800 capitalize"  for="type">select issues:</label>
+                     <select class="outline-none selectissue pl-5 mt-1 border-[1.5px] border-zinc-400 rounded-md py-[6px]  xl:w-[47vh] px-2 cursor-pointer"  name="issue" id="issue">
+                       <option class="py-[5px] cursor-pointer" value="<%=article.issue.issueName%>"><%=article.issue.issueName%></option>
+                       <%issue.forEach(function(year){%>
+                        <option class="py-[5px] cursor-pointer" value="<%=year.issueName%>"><%=year.issueName%></option>
+                      <%})%>
+                     </select>
+                     <ul>
+                       <%errors && errors.forEach(function(error) { %>
+                         <%if(error.msg == "Please select a valid issue"){%>
+                           <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                         <%}%>
+                       <% }) %>
+                     </ul>
+                 </div>
+                     
+              </div>
+               
+               <div class="mid-part flex w-full justify-between xl:mt-5">
+                       <div class="flex flex-col w-[160vh]">
+                         <label class="text-zinc-800 capitalize" for="name">title:</label>
+                         <input placeholder="Title" class="w-full py-[6px] flex items-center border-[1.5px] mt-1  border-zinc-400 rounded-md px-2 pl-5 " value="<%=article.title%>" type="text" name="title" id="title">
+                         <ul>
+                           <%errors && errors.forEach(function(error) { %>
+                             <%if(error.msg == "Title is required"){%>
+                               <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                             <%}%>
+                           <% }) %>
+                         </ul>
+                       </div>
+                     
+                     
+               </div>
+               
+               <div class="xl:mt-5">
+                 <label class="text-zinc-800 capitalize" for="author">author</label>
+                 <!-- This is where CKEditor will be applied -->
+                 <textarea class="mt-1" name="author" id="editor"><%-article.author%></textarea>
+                 <ul>
+                   <%errors && errors.forEach(function(error) { %>
+                     <%if(error.msg == "Author is required"){%>
+                       <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                     <%}%>
+                   <% }) %>
+                 </ul>
+               </div>
+               <div class="mid-part flex w-full pr-2 justify-between xl:mt-5">
+                <div class="flex flex-col  max-lg:w-full w-full lg:w-full">
+                   <label class="text-zinc-800 capitalize" for="name">Abstract:</label>
+                   <textarea placeholder="Abstract" class="pl-5 max-lg:w-full pt-3 w-full border-[1.2px] border-zinc-400 rounded-md mt-2 h-[40vh]" name="abstract" id=""><%=article.abstract%></textarea>
+                   <ul>
+                     <%errors && errors.forEach(function(error) { %>
+                       <%if(error.msg == "Abstract is required"){%>
+                         <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                       <%}%>
+                     <% }) %>
+                   </ul>
+                 </div>
+                </div>
+               <div class="top-part flex w-full max-lg:flex-col flex-wrap gap-2 justify-between mt-4">
+                 <div class="flex flex-col xl:w-[60vh]  ml-2">
+                   <label class="text-zinc-800 capitalize" class="" for="image">upload article:</label>
+                   <input class="w-full py-[3px] flex items-center border-[1.5px] mt-1  border-zinc-400 rounded-md px-2 pl-5 cursor-pointer" type="file" name="pdf" id="pdf">
+                   <ul>
+                    <%errors && errors.forEach(function(error) { %>
+                      <%if(error.msg == "Invalid PDF file type." || error.msg == "File too large" ){%>
+                        <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                      <%}%>
+                    <% }) %>
+                   </ul>
+                   
+               </div>
+               <div class="flex flex-col xl:w-[60vh]  ml-2">
+                 <label class="text-zinc-800 capitalize" class="" for="image">Image:</label>
+                 <input class="w-full py-[3px] flex items-center border-[1.5px] mt-1  border-zinc-400 rounded-md px-2 pl-5 cursor-pointer" type="file" name="image" id="image">
+                 <ul>
+                  <%errors && errors.forEach(function(error) { %>
+                    <%if(error.msg == "Invalid image file type. Only .jpg, .jpeg, and .png allowed!"){%>
+                      <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                    <%}%>
+                  <% }) %>                
+                 </ul>
+                 
+             </div>
+             </div>
+             <div class="mid-part flex w-full justify-between xl:mt-5">
+             <div class="flex flex-col w-[160vh]">
+               <label class="text-zinc-800 capitalize" for="name">keyword:</label>
+               <input placeholder="keyword" class="w-full py-[6px] flex items-center border-[1.5px] mt-1  border-zinc-400 rounded-md px-2 pl-5 " type="text" name="keyword" value="<%=article.keyword%>" id="keyword">
+               <ul>
+                 <%errors && errors.forEach(function(error) { %>
+                   <%if(error.msg == "Keyword is required"){%>
+                     <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                   <%}%>
+                 <% }) %>
+               </ul>
+             </div>
+            </div>
+           <div class="mid-part flex w-full justify-between xl:mt-5">
+             <div class="flex flex-col w-[160vh]">
+               <label class="text-zinc-800 capitalize" for="name">DOI:</label>
+               <input placeholder="DOI" class="w-full py-[6px] flex items-center border-[1.5px] mt-1  border-zinc-400 rounded-md px-2 pl-5 " type="text" value="<%=article.doi%>" name="doi" id="doi">
+               <ul>
+                 <%errors && errors.forEach(function(error) { %>
+                   <%if(error.msg == "DOI is required"){%>
+                     <li class="mt-2 alert alert-danger text-red-600">*<%= error.msg %>*</li>
+                   <%}%>
+                 <% }) %>
+               </ul>
+             </div> 
+           </div>
+               <button class="px-3 py-2 bg-[#556EE6] rounded-md mt-4 text-white" type="submit">Submit</button>
+             </form>
+          </div>
+        <div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+  integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+        <script>
+          console.log("edit page");
+          
+           const menu = document.querySelector(".leftmenu")
+          let toggle = 0;
+       document.querySelector(".menu-icon").addEventListener("click", function(e) {
+        if(toggle == 0){
+            gsap.to(menu,{
+                left:"0",
+                duration: 0.5,
+                ease: "power3.inOut"
+            })
+            toggle = 1;
+        }else{
+            gsap.to(menu,{
+                left:"-100%",
+                duration: 0.5,
+                ease: "power3.inOut"
+            })
+            toggle = 0;
+        }
+       })
+      
+  let toggler = 0;
+      let prof = document.querySelector(".profilenav")
+       prof.addEventListener("click",()=>{
+        if(toggler == 0){
+          document.querySelector(".profilemenu").classList.remove("hidden")
+          toggler = 1;
+        }else{
+          document.querySelector(".profilemenu").classList.add("hidden")
+          toggler = 0;
+        }
+       })
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof CKEDITOR !== 'undefined') {
+                    CKEDITOR.replace('editor', {
+                        toolbar: [
+                            { name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
+                            { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'] },
+                            { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+                            { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] },
+                            '/',
+                            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                            { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                            { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+                            '/',
+                            { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                            { name: 'colors', items: ['TextColor', 'BGColor'] },
+                            { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
+                        ]
+                    });
+                } else {
+                    console.error('CKEDITOR is not loaded.');
+                }
+            });
+        
+          function getissue(){
+            const yearSelect = document.querySelector('.selectyear');
+            const issueSelect = document.querySelector('.selectissue');
+            console.log(yearSelect);
+            
+            yearSelect.addEventListener('change', async function() {
+              const selectedYear = this.value;
+              
+              // Clear current options
+              issueSelect.innerHTML = '<option value="" disabled selected>select issue</option>';
+              
+              if (!selectedYear) return;
+
+              try {
+                const response = await fetch(`/admin/issues-by-year/${selectedYear}`);
+                console.log(response);
+                
+                const issues = await response.json();
+                console.log(issues);
+                
+                issues.forEach(issue => {
+                  const option = document.createElement('option');
+                  option.value = issue.issueName;
+                  option.textContent = issue.issueName;
+                  option.classList.add('py-[5px]', 'cursor-pointer');
+                  issueSelect.appendChild(option);
+                });
+              } catch (error) {
+                console.error('Error fetching issues:', error);
+              }
+            });
+
+          }
+          getissue()
+        </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<%- include('./partials/header'); %>
+<%- include('./partials/menu',{formattedDateTime}); %>
+<div class="parent w-full h-fit  bg-[#FAE8DC] flex  items-center justify-center">
+    <div class="child max-md:w-full md:w-[80%] h-fit  bg-white shadow-md	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
+     <div class="hero w-full  h-fit ">
+       <div class="flex flex-col px-2 md:flex-row">
+         <div class="flex flex-col items-center left-content max-md:w-full    max-md:px-2 md:w-[75%] pl-[3vh] pt-[5vh] h-full  ">
+             <div class="head xl:w-[55vw] max-lg:p-3 xl:h-[11vh] lg:p-3 bg-[#025A6C] rounded-md flex items-center justify-center">
+                <h2 class="text-white uppercase xl:text-[5vh] max-lg:text-[2.5vh] text-center font-bold lg:text-[5vh]">Article ( WJAPS-1242024 )</h2>
+            </div>
+             <%if(manuscript){%>
+                <div class="xl:hidden w-full mt-2">
+                    <div class="w-full xl:mt-5 xl:flex-col border-[1.3px] border-gray-700 flex xl:h-[10vw] h-[40vw] ">
+                        <div class="w-[30%]  h-full ">
+                            <div class="shell1 max-lg:h-[5vw] lg:h-[2vw]  xl:h-fit xl:py-3 flex items-center justify-center w-full border-b-[1.3px] border-gray-700 ">
+                                <h2 class="xl:text-[1.8vh] md:text-[1vw] text-[1.9vw] font-medium capitalize">sr.no</h2>
+                            </div>
+                            <div class="shell1 max-lg:h-[5vw] lg:h-[5vw] xl:h-fit xl:py-3 flex items-center justify-center w-full border-b-[1.3px] border-gray-700 py-3">
+                                <h6 class="xl:text-[1.8vh] md:text-[1vw] text-[1.9vw] font-medium capitalize">Author</h6>
+                            </div>
+                            <div class="shell1 max-lg:h-[15vw] lg:h-[15vw] xl:h-fit xl:py-3 flex items-center justify-center w-full border-b-[1.3px] border-gray-700 py-3">
+                                <h2 class="xl:text-[1.8vh] md:text-[1vw] text-[1.9vw] font-medium capitalize">title</h2>
+                            </div>
+                            <div class="shell1 max-lg:h-[5vw] lg:h-[5vw] xl:h-fit xl:py-3 xl:border-b-[1.3px] xl:border-gray-700 flex items-center justify-center w-full  py-3">
+                                <h2 class="xl:text-[1.8vh] md:text-[1vw] text-[1.9vw] font-medium capitalize">Status</h2>
+                            </div>
+                        </div>
+                        <div class="w-[70%] border-gray-700 border-l-[1.3px] bg-gray-200  h-full  ">
+                            <div class="shell1 max-lg:h-[5vw] lg:h-[2vw] flex items-center justify-center w-full  border-b-[1.3px] border-gray-700 ">
+                                <h2 class="xl:text-[1.8vh] md:text-[1vw] text-[1.9vw] font-medium capitalize">1</h2>
+                            </div>
+                            <div class="shell1 max-lg:h-[5vw] lg:h-[5vw] flex items-center justify-center w-full  border-b-[1.3px] p-3 border-gray-700 py-3">
+                                <h2 class="xl:text-[1.8vh] md:text-[1vw] text-[1.9vw] font-medium capitalize"><%=manuscript.name%></h2>
+                            </div>
+                            <div class="shell1 max-lg:h-[15vw] lg:h-[15vw] overflow-y-scroll p-3  w-full  border-b-[1.3px] border-gray-700 py-3">
+                                <h2 class="xl:text-[1.8vh] md:text-[1vw] text-[1.9vw] font-medium capitalize"><%=manuscript.title%> </h2>
+                            </div>
+                            <div class="shell1 max-lg:h-[5vw] lg:h-[5vw] flex items-center justify-center w-full       py-3">
+                                <h2 class="xl:text-[2vh] text-[2.5vw] md:text-[1.5vw] font-medium font-medium px-3 py-1 xl:py-2 rounded-md text-white capitalize 
+                                <%= manuscript.status === 'Pending' ? 'bg-[#F1B44C]' : 
+                                    manuscript.status === 'Accepted' ? 'bg-green-500' : 
+                                    manuscript.status === 'Rejected' ? 'bg-red-400' : 
+                                    manuscript.status === 'Under Review' ? 'bg-blue-500' : '' %>">
+                                <%= manuscript.status %>
+                            </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="xl:flex hidden">
+                    <div class="div  w-[55vw] border-[1.3px] mt-8 border-zinc-500">
+                        <div class="col1 w-full flex h-[7vh]">
+                            <div class="r1 shrink-0 p-3 border-r-[1.3px] border-gray-500 w-[10%]">
+                                <h2 class="text-[2vh] font-medium px-3 capitalize">sr.no</h2>
+                            </div>
+                            <div class="r1 shrink-0 p-3 border-r-[1.3px] border-gray-500 w-[18%]">
+                                <h2 class="text-[2.4vh] font-medium px-3 capitalize">author</h2>
+                            </div>
+                            <div class="r1 shrink-0 p-3 border-r-[1.3px] border-gray-500 w-[50%]">
+                                <h2 class="text-[2.4vh] font-medium px-3 capitalize">title</h2>
+                            </div>
+                            <div class="r1 shrink-0 p-3  w-[20%]">
+                                <h2 class="text-[2.4vh] font-medium px-3 capitalize">status</h2>
+                            </div>
+                        </div>
+                        <div class="col1 w-full bg-[#E5E7EB] border-t-[1.3px] border-zinc-500 flex h-fit ">
+                            <div class="r1 shrink-0 py-[5vh] px-3 p-3 border-r-[1.3px] border-gray-500 w-[10%]">
+                                <h2 class="text-[2.4vh] font-medium px-3 capitalize">1</h2>
+                            </div>
+                            <div class="r1 shrink-0 py-[5vh] px-3 p-3 border-r-[1.3px] border-gray-500 w-[18%]">
+                                <h2 class="text-[2.4vh] font-medium px-3 capitalize"><%=manuscript.name%></h2>
+                            </div>
+                            <div class="r1 shrink-0 py-[5vh] px-3 p-3 border-r-[1.3px] border-gray-500 w-[50%]">
+                                <h2 class="text-[2.4vh] font-medium px-3 capitalize"><%=manuscript.title%></h2>
+                            </div>
+                            <div class="r1 shrink-0 py-[5vh] px-3  w-[20%]">
+                                <h2 class="text-[2.4vh] font-medium px-3 py-2 rounded-md text-white capitalize 
+                                    <%= manuscript.status === 'Pending' ? 'bg-[#F1B44C]' : 
+                                        manuscript.status === 'Accepted' ? 'bg-green-500' : 
+                                        manuscript.status === 'Rejected' ? 'bg-red-400' : 
+                                        manuscript.status === 'Under Review' ? 'bg-blue-500' : '' %>">
+                                    <%= manuscript.status %>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+             <%}else{%>
+                 <h2 class="text-[5vh] max-md:text-[2.3vh] xl:mt-5 text-red-600 font-medium uppercase">wrong crendentials</h2>
+                 <%}%>
+        </div>
+      <%- include('./partials/sidebar',{news});%>
+       </div>
+       <div class="flex flex-wrap p-3"> 
+  
+  
+      <div class="w-full transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#058ECB]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">Call for papers</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">24x7 working</h3>
+
+            <a href="/manuscript-submission" class="bg-[#058ECB] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      
+      <div class="w-full  transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#82B26C]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">Notification of acceptance</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">Within 24 hours</h3>
+
+            <a href="/manuscript-submission" class="bg-[#82B26C] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      <div class="w-full  transition-transform duration-0.2 ease hover:scale-[1.03] cursor-pointer sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover xl:h-48 max-xl:py-5 flex items-center justify-center bg-[#058ECB]">
+            <h6 class="xl:text-[2.5vw] md:text-[2vw] text-[6vw] capitalize text-center text-white font-bold">E-certificates</h6>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 xl:text-2xl md:text-[1.7vw] text-[5vw] text-center font-bold">Within 04 hours</h3>
+
+            <a href="/manuscript-submission" class="bg-[#058ECB] p-2 xl:text-2xl md:text-[1.7vw] text-[3vw] hover:text-red uppercase no-underline tracking-wide mx-auto text-white font-bold uppercase">submit today</a>
+          </div>
+        </div>  
+      </div>
+      
+     
+        
+    </div>
+    <div class="relative max-md:hidden w-[95%] m-auto md:h-[10vw] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+      <%- include('./partials/scroller',{indexings}); %>
+    </div>
+       <div class="relative md:hidden w-[85%] m-auto md:h-[20vh] max-md:h-[15vh] my-3 items-center flex border-[1.3px] border-black">
+        <%- include('./partials/resscroller',{indexings}); %>
+      </div>
+   
+     </div>
+    
+       <%- include('./partials/footerfrontend',{visit}); %>
+    </div>
+   </div>
+<%- include('./partials/footer'); %>
+
